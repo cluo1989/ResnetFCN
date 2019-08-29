@@ -96,8 +96,8 @@ def inference(x, is_training,
         fuse_scale2 = tf.add(upscore8, score_scale2)
 
         upscore32 = upscore_layer(fuse_scale2, shape=tf.shape(input_x), num_classes=num_classes, name='upscore32', ksize=8, stride=4)
-        pred_up = tf.argmax(upscore32, dimension=3)
-        pred = tf.expand_dims(pred_up, dim=3)
+        pred_up = tf.argmax(upscore32, axis=3)
+        pred = tf.expand_dims(pred_up, axis=3)
 
     return pred, upscore32
 

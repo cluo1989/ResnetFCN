@@ -1,3 +1,4 @@
 data/train
-logs
+logs/
 __pycache__
+tmp/
