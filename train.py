@@ -26,7 +26,7 @@ params = {'num_parallel_calls':1,
           'batch_size': FLAGS.batch_size, 
           'image_width': IMAGE_WIDTH, 
           'image_height': IMAGE_HEIGHT,
-          'num_epochs': 200, 
+          'num_epochs': 1000, 
           }
 
 

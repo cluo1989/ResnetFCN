@@ -15,29 +15,36 @@ pred, logits = inference(x, is_training=False, num_classes=NUM_CLASSES, num_bloc
 isess = tf.InteractiveSession()
 isess.run(tf.global_variables_initializer())
 saver = tf.train.Saver()
-ckpt_filename = './logs/model4000.ckpt-4001'
+ckpt_filename = './logs/model20500.ckpt-20501'
 saver.restore(isess, ckpt_filename)
 
-img = cv2.imread('data/train/images/image_000031.png')/255.0
+lab = cv2.imread('data/train/labels/label_000009.png')
+lab = cv2.resize(lab, (224, 224))
+img = cv2.imread('data/train/images/image_000009.png')/255.0
 img = cv2.resize(img, (224, 224))
 img = np.expand_dims(img, axis=0)  # np.reshape(img, (1, 224))
-print(img.shape)
+print(img.shape, img.dtype)
+print(lab.shape, lab.dtype)
 
 result = isess.run(pred, feed_dict={x: img})
 result = np.squeeze(result, axis=(0, -1))
-print(result.shape)
+print(result.shape, result.dtype)
 
 # ------------- show -------------
 plt.figure(num='origin&result')
-plt.subplot(121)
+plt.subplot(131)
 plt.title('origin')
 plt.imshow(np.squeeze(img))
 plt.axis('off')
 
-plt.subplot(122)
+plt.subplot(132)
 plt.title('result')
 plt.imshow(result)
 plt.axis('off')
 
-plt.show()
+plt.subplot(133)
+plt.title('label')
+plt.imshow(lab[:,:,0])
+plt.axis('off')
 
+plt.show()
