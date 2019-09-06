@@ -18,9 +18,9 @@ saver = tf.train.Saver()
 ckpt_filename = './logs/model20500.ckpt-20501'
 saver.restore(isess, ckpt_filename)
 
-lab = cv2.imread('data/train/labels/label_000009.png')
+lab = cv2.imread('data/train/labels/label_000029.png')
 lab = cv2.resize(lab, (224, 224))
-img = cv2.imread('data/train/images/image_000009.png')/255.0
+img = cv2.imread('data/train/images/image_000029.png')/255.0
 img = cv2.resize(img, (224, 224))
 img = np.expand_dims(img, axis=0)  # np.reshape(img, (1, 224))
 print(img.shape, img.dtype)
